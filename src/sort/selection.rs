@@ -1,4 +1,4 @@
-pub fn selection_sort(array: &mut Vec<i32>) {
+pub fn selection_sort<T>(array: &mut Vec<T>) where T: PartialOrd + Copy {
     for index in 0..array.len() - 1 {
         let lowest_index = get_lowest_index(array, index + 1);
         if array[index] > array[lowest_index] {
@@ -9,7 +9,7 @@ pub fn selection_sort(array: &mut Vec<i32>) {
     }
 }
 
-fn get_lowest_index(array: &Vec<i32>, start_from: usize) -> usize {
+fn get_lowest_index<T>(array: &Vec<T>, start_from: usize) -> usize where T: PartialOrd + Copy {
     let mut smallest_index = start_from;
     for i in start_from..array.len() {
         if array[i] < array[smallest_index] {
@@ -56,5 +56,12 @@ mod tests {
         let mut last_elem_vec = vec![1, 2, 3, 4, 5, 0];
         selection_sort(&mut last_elem_vec);
         assert_eq!(last_elem_vec, vec![0, 1, 2, 3, 4, 5]);
+    }
+
+    #[test]
+    fn float_elem_test() {
+        let mut float_vec = vec![0.2, 0.1, 0.6, 0.5, 0.5, 0.7, 0.2];
+        selection_sort(&mut float_vec);
+        assert_eq!(float_vec, vec![0.1, 0.2, 0.2, 0.5, 0.5, 0.6, 0.7]);
     }
 }

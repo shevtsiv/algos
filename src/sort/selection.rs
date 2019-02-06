@@ -64,4 +64,11 @@ mod tests {
         selection_sort(&mut float_vec);
         assert_eq!(float_vec, vec![0.1, 0.2, 0.2, 0.5, 0.5, 0.6, 0.7]);
     }
+
+    #[test]
+    fn char_elem_test() {
+        let mut char_vec = vec!['c', 'a', 'b', 'h', 'y', 'z', 'x'];
+        selection_sort(&mut char_vec);
+        assert_eq!(char_vec, vec!['a', 'b', 'c', 'h', 'x', 'y', 'z']);
+    }
 }

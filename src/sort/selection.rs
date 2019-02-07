@@ -71,4 +71,26 @@ mod tests {
         selection_sort(&mut char_vec);
         assert_eq!(char_vec, vec!['a', 'b', 'c', 'h', 'x', 'y', 'z']);
     }
+
+    #[derive(PartialOrd, PartialEq, Clone, Debug)]
+    struct ExampleStruct {
+        some_string: String
+    }
+
+    #[test]
+    fn custom_type_elem_test() {
+        let mut custom_type_vec = vec![
+            ExampleStruct { some_string: String::from("B") },
+            ExampleStruct { some_string: String::from("A") },
+            ExampleStruct { some_string: String::from("F") },
+            ExampleStruct { some_string: String::from("C") }
+        ];
+        selection_sort(&mut custom_type_vec);
+        assert_eq!(custom_type_vec, vec![
+            ExampleStruct { some_string: String::from("A") },
+            ExampleStruct { some_string: String::from("B") },
+            ExampleStruct { some_string: String::from("C") },
+            ExampleStruct { some_string: String::from("F") }
+        ]);
+    }
 }

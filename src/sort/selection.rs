@@ -1,15 +1,13 @@
-pub fn selection_sort<T>(array: &mut Vec<T>) where T: PartialOrd + Clone {
+pub fn selection_sort<T: PartialOrd>(array: &mut Vec<T>) {
     for index in 0..array.len() - 1 {
         let lowest_index = get_lowest_index(array, index + 1);
         if array[index] > array[lowest_index] {
-            let temp = array[lowest_index].clone();
-            array[lowest_index] = array[index].clone();
-            array[index] = temp;
+            array.swap(lowest_index, index);
         }
     }
 }
 
-fn get_lowest_index<T>(array: &Vec<T>, start_from: usize) -> usize where T: PartialOrd {
+fn get_lowest_index<T: PartialOrd>(array: &Vec<T>, start_from: usize) -> usize {
     let mut smallest_index = start_from;
     for i in start_from..array.len() {
         if array[i] < array[smallest_index] {
@@ -72,7 +70,7 @@ mod tests {
         assert_eq!(char_vec, vec!['a', 'b', 'c', 'h', 'x', 'y', 'z']);
     }
 
-    #[derive(PartialOrd, PartialEq, Clone, Debug)]
+    #[derive(PartialOrd, PartialEq, Debug)]
     struct ExampleStruct {
         some_string: String
     }

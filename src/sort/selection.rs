@@ -1,15 +1,15 @@
-pub fn selection_sort<T>(array: &mut Vec<T>) where T: PartialOrd + Copy {
+pub fn selection_sort<T>(array: &mut Vec<T>) where T: PartialOrd + Clone {
     for index in 0..array.len() - 1 {
         let lowest_index = get_lowest_index(array, index + 1);
         if array[index] > array[lowest_index] {
-            let temp = array[lowest_index];
-            array[lowest_index] = array[index];
+            let temp = array[lowest_index].clone();
+            array[lowest_index] = array[index].clone();
             array[index] = temp;
         }
     }
 }
 
-fn get_lowest_index<T>(array: &Vec<T>, start_from: usize) -> usize where T: PartialOrd + Copy {
+fn get_lowest_index<T>(array: &Vec<T>, start_from: usize) -> usize where T: PartialOrd {
     let mut smallest_index = start_from;
     for i in start_from..array.len() {
         if array[i] < array[smallest_index] {

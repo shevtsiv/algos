@@ -91,4 +91,13 @@ mod tests {
             ExampleStruct { some_string: String::from("F") }
         ]);
     }
+
+    #[test]
+    fn get_lowest_index_test() {
+        use super::get_lowest_index;
+        let random_vec = vec![-80, 1, 6, 0, 90, 34, 10];
+        assert_eq!(get_lowest_index(&random_vec, 0), 0);
+        assert_eq!(get_lowest_index(&random_vec, 1), 3);
+        assert_eq!(get_lowest_index(&random_vec, 4), 6);
+    }
 }

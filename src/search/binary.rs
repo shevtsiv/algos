@@ -1,4 +1,4 @@
-pub fn binary_search<'a, T: PartialOrd>(array: &'a Vec<T>, value: &'a T) -> Option<(usize, &'a T)> {
+pub fn binary_search<'a, T: PartialOrd>(array: &'a [T], value: &'a T) -> Option<(usize, &'a T)> {
     let mut array_size = array.len();
     for index in 0..array_size {
         let middle_index = (index + array_size) / 2;

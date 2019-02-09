@@ -22,7 +22,7 @@ pub fn binary_search_recursive<'a, T: PartialOrd>(array: &'a [T], start: usize, 
     let middle_index = (start + end) / 2;
     if &array[middle_index] == value {
         return Option::from((middle_index, &array[middle_index]));
-    } else if array.len() == 1 {
+    } else if middle_index == 0 {
         return None;
     } else if &array[middle_index] > value {
         return binary_search_recursive(&array, 0, middle_index, value);
@@ -57,5 +57,16 @@ mod test {
         assert_eq!(binary_search_recursive(&random_vec, 0, random_vec.len(), &0).unwrap(), (0, &0));
         // Last
         assert_eq!(binary_search_recursive(&random_vec, 0, random_vec.len(), &10).unwrap(), (10, &10));
+    }
+
+    #[test]
+    fn not_sorted_vec_test() {
+        let mut not_sorted_vec = vec![1, 2, 5, 3, 16, 4, 0];
+        assert_eq!(binary_search_linear(&not_sorted_vec, &0), None);
+        assert_eq!(binary_search_recursive(&not_sorted_vec, 0, not_sorted_vec.len(), &0), None);
+        use crate::sort::insertion::insertion_sort;
+        insertion_sort(&mut not_sorted_vec);
+        assert_eq!(binary_search_linear(&not_sorted_vec, &0).unwrap(), (0, &0));
+        assert_eq!(binary_search_recursive(&not_sorted_vec, 0, not_sorted_vec.len(), &0).unwrap(), (0, &0));
     }
 }

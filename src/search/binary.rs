@@ -1,4 +1,4 @@
-pub fn binary_search<'a, T: PartialOrd>(array: &'a [T], value: &'a T) -> Option<(usize, &'a T)> {
+pub fn binary_search_linear<'a, T: PartialOrd>(array: &'a [T], value: &'a T) -> Option<(usize, &'a T)> {
     let mut array_size = array.len();
     for index in 0..array_size {
         let middle_index = (index + array_size) / 2;
@@ -33,17 +33,17 @@ pub fn binary_search_recursive<'a, T: PartialOrd>(array: &'a [T], start: usize, 
 
 #[cfg(test)]
 mod test {
-    use crate::search::binary::binary_search;
+    use crate::search::binary::binary_search_linear;
 
     #[test]
     fn random_vec_test() {
         let random_vec = vec![0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
         // Middle
-        assert_eq!(binary_search(&random_vec, &5).unwrap(), (5, &5));
+        assert_eq!(binary_search_linear(&random_vec, &5).unwrap(), (5, &5));
         // First
-        assert_eq!(binary_search(&random_vec, &0).unwrap(), (0, &0));
+        assert_eq!(binary_search_linear(&random_vec, &0).unwrap(), (0, &0));
         // Last
-        assert_eq!(binary_search(&random_vec, &10).unwrap(), (10, &10));
+        assert_eq!(binary_search_linear(&random_vec, &10).unwrap(), (10, &10));
     }
 
     use crate::search::binary::binary_search_recursive;

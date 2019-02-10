@@ -1,3 +1,4 @@
+#![feature(is_sorted)]
 pub mod sort;
 pub mod search;
 

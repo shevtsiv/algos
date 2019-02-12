@@ -1,13 +1,15 @@
 pub fn bubble_sort<T: PartialOrd>(array: &mut [T]) {
     let mut sorted = false;
+    let mut len = array.len();
     while !sorted {
         sorted = true;
-        for i in 1..array.len() {
+        for i in 1..len {
             if array[i] < array[i - 1] {
                 array.swap(i, i - 1);
                 sorted = false;
             }
         }
+        len -= 1;
     }
 }
 

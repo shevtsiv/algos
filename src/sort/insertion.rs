@@ -1,8 +1,8 @@
 pub fn insertion_sort<T: PartialOrd>(array: &mut [T]) {
-    for mut index in 0..array.len() - 1 {
-        while array[index] > array[index + 1] {
-            array.swap(index, index + 1);
-            if index > 0 {
+    for mut index in 1..array.len() {
+        while array[index - 1] > array[index] {
+            array.swap(index - 1, index);
+            if index > 1 {
                 index -= 1;
             }
         }

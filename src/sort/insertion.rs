@@ -1,4 +1,4 @@
-pub fn insertion_sort<T: PartialOrd>(array: &mut Vec<T>) {
+pub fn insertion_sort<T: PartialOrd>(array: &mut [T]) {
     for mut index in 0..array.len() - 1 {
         while array[index] > array[index + 1] {
             array.swap(index, index + 1);

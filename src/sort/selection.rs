@@ -1,4 +1,4 @@
-pub fn selection_sort<T: PartialOrd>(array: &mut Vec<T>) {
+pub fn selection_sort<T: PartialOrd>(array: &mut [T]) {
     for index in 0..array.len() - 1 {
         let lowest_index = get_lowest_index(array, index + 1);
         if array[index] > array[lowest_index] {
@@ -7,7 +7,7 @@ pub fn selection_sort<T: PartialOrd>(array: &mut Vec<T>) {
     }
 }
 
-fn get_lowest_index<T: PartialOrd>(array: &Vec<T>, start_from: usize) -> usize {
+fn get_lowest_index<T: PartialOrd>(array: &[T], start_from: usize) -> usize {
     let mut smallest_index = start_from;
     for i in start_from..array.len() {
         if array[i] < array[smallest_index] {

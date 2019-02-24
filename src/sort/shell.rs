@@ -3,7 +3,7 @@ use crate::sort::insertion::insertion_sort;
 pub fn shell_sort<T: PartialOrd>(array: &mut [T]) {
     let mut interval = array.len() / 2;
     while interval > 1 {
-        for i in 0..array.len() {
+        for i in 0..array.len() / 2 {
             for j in (i..array.len()).step_by(interval) {
                 if array.get(j + interval).is_some() && array[j] > array[j + interval] {
                     array.swap(j, j + interval);

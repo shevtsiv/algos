@@ -8,27 +8,23 @@ pub fn merge_sort<T: PartialOrd + Clone>(array: &mut [T]) {
     merge_sort(&mut first_part);
     merge_sort(&mut second_part);
     let mut insertion_index = 0;
-    let mut i = 0;
-    let mut j = 0;
+    let i = 0;
+    let j = 0;
     while i < first_part.len() && j < second_part.len() {
         if first_part[i] < second_part[j] {
-            array[insertion_index] = first_part[i].clone();
-            i += 1;
+            array[insertion_index] = first_part.remove(i);
             insertion_index += 1;
         } else {
-            array[insertion_index] = second_part[j].clone();
-            j += 1;
+            array[insertion_index] = second_part.remove(j);
             insertion_index += 1;
         }
     }
     while i < first_part.len() {
-        array[insertion_index] = first_part[i].clone();
-        i += 1;
+        array[insertion_index] = first_part.remove(i);
         insertion_index += 1;
     }
     while j < second_part.len() {
-        array[insertion_index] = second_part[j].clone();
-        j += 1;
+        array[insertion_index] = second_part.remove(j);
         insertion_index += 1;
     }
 }

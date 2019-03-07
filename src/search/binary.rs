@@ -25,9 +25,9 @@ pub fn binary_search_recursive<T: PartialOrd>(array: &[T], start: usize, end: us
     } else if middle_index == 0 {
         return None;
     } else if &array[middle_index] > value {
-        return binary_search_recursive(&array, 0, middle_index, value);
+        return binary_search_recursive(&array, start, middle_index, value);
     } else {
-        return binary_search_recursive(&array, middle_index, array.len(), value);
+        return binary_search_recursive(&array, middle_index, end, value);
     }
 }
 
@@ -52,7 +52,7 @@ mod test {
     fn random_vec_recursive_test() {
         let random_vec = vec![0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
         // Middle
-        assert_eq!(binary_search_recursive(&random_vec, 0, random_vec.len(), &5).unwrap(), 5);
+        assert_eq!(binary_search_recursive(&random_vec, 4, 8, &5).unwrap(), 5);
         // First
         assert_eq!(binary_search_recursive(&random_vec, 0, random_vec.len(), &0).unwrap(), 0);
         // Last
